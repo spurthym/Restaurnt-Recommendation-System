@@ -2,7 +2,7 @@ class Settings:
     def __init__(self):
         pass
 
-    DATASET_FILE = '/Users/spurthy/Desktop/final_project_nm/dataset/tempe_review_1600.json'
+    DATASET_FILE = '/Users/spurthy/Desktop/Restaurnt-Recommendation-System/dataset/tempe_review_1600.json'
     MONGO_CONNECTION_STRING = "mongodb://localhost:27017/"
     # REVIEWS_DATABASE = "Dataset_Challenge_Reviews" # original, trained
 
