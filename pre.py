@@ -1,30 +1,7 @@
-
-from predict import main as mn
-import operator
-import logging
-import gensim
-import pickle
-import time
-import nltk
-from gensim import corpora
-from gensim.corpora import BleiCorpus
-from gensim.models import LdaModel
-from pymongo import MongoClient
-from settings import Settings
-#import pyLDAvis.gensim
-import gensim.matutils
-#from keras.models import load_model
-#from keras.preprocessing.sequence import pad_sequences
-
-
-import os
-import time
 import json
-# import string as str
-
 from pymongo import MongoClient
-
 from settings import Settings
+from predict import main as mn
 
 
 
@@ -45,7 +22,7 @@ for i in user_profile_cursor:
             "ENCRYPTED":str(mn(str(i["TEXT"])))
         })   
 
-print("User profiles with their respective encoded values created which has their prefrences hidden in it",USER_PROFILE.find().count())
+print("User profiles with their respective encoded values created which has their prefrences hidden in it",USER_PROFILE.count_documents({}))
 
 
 
@@ -55,5 +32,5 @@ for i in business_profile_cursor:
             "ENCRYPTED":str(mn(str(i["TEXT"])))
         })   
 
-print("business profiles with their respective encoded values created which has their features hidden in it",BUSINESS_PROFILE.find().count())
+print("business profiles with their respective encoded values created which has their features hidden in it",BUSINESS_PROFILE.count_documents({}))
 

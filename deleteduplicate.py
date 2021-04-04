@@ -1,29 +1,6 @@
-import operator
-import logging
-import gensim
-import pickle
-import time
-import nltk
-from gensim import corpora
-from gensim.corpora import BleiCorpus
-from gensim.models import LdaModel
-from pymongo import MongoClient
-from settings import Settings
-#import pyLDAvis.gensim
-import gensim.matutils
-#from keras.models import load_model
-#from keras.preprocessing.sequence import pad_sequences
-
-
-import os
-import time
 import json
-# import string as str
-
 from pymongo import MongoClient
-
 from settings import Settings
-
 
 USER_PROFILE = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.USER_COLLECTION]
 BUSINESS_PROFILE = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.BUSINESS_COLLECTION]
@@ -83,5 +60,5 @@ for i,val in reviewsByBusiness.items():
 	})
 
 
-print(USER_D.find().count())
-print(BUSINESS_D.find().count())
+print("The Number of Unique users in the databse is",USER_D.count_documents({}))
+print("The Number of Unique Businesses in the databse is",BUSINESS_D.count_documents({}))
