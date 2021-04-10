@@ -19,33 +19,59 @@ class Predict():
             for line in f:
                 stopwords[line.strip()] = 1
 
+
         return stopwords
 
     def extract_lemmatized_nouns(self, new_review):
         stopwords = self.load_stopwords()
+        #print(stopwords)
+        #ex {'a': 1, "a's": 1, 'able': 1, 'about': 1,
         words = []
-
+        #we divide a given text into different lines by using the function sent_tokenize.
         sentences = nltk.sent_tokenize(new_review.lower())
+        #print(sentences)
         for sentence in sentences:
+            #We tokenize the words using word_tokenize function available as part of nltk.
             tokens = nltk.word_tokenize(sentence)
+            # Word tokenizers is used to find the words
+            # and punctuation in a string
+            # removing stop words from wordList
+
             text = [word for word in tokens if word not in stopwords]
+            # Using a Tagger. Which is part-of-speech
+
+
             tagged_text = nltk.pos_tag(text)
 
             for word, tag in tagged_text:
                 words.append({"word": word, "pos": tag})
+            #print(words)
 
         lem = WordNetLemmatizer()
+        #We use NLTK’s Wordnet to find the meanings of words, synonyms, antonyms, and more. In addition, we use WordNetLemmatizer to get the root word.
         nouns = []
+        c=0
         for word in words:
             if word["pos"] in ["NN", "NNS"]:
                 nouns.append(lem.lemmatize(word["word"]))
+                c=c+1
+
         return nouns
+
+        
+
 
     def run(self, new_review):
         nouns = self.extract_lemmatized_nouns(new_review)
-#        print("nouns = ", nouns)
+        #print(nouns)
+        #print(self.dictionary(nouns))
         new_review_bow = self.dictionary.doc2bow(nouns)
-#        print("new_review_bow = ", new_review_bow)
+        print(new_review_bow[0])
+        #print(new_review_bow)
+        #bag-of-word (BoW) model. In this approach, each document is basically represented by a vector containing the frequency count of every word in the dictionary.
+        #for i,val in new_review_bow:
+         #   print(i,val)
+        #print("new_review_bow = ", new_review_bow)
         new_review_lda = self.lda[new_review_bow]
         return (new_review_lda)
 
