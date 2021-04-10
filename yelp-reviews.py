@@ -33,7 +33,7 @@ with open(dataset_file) as dataset:
 
 
         reviewsByUser[user_id].append(text)
-        print(user_id)
+        #print(user_id)
 
 
          # if loop to categorise the review

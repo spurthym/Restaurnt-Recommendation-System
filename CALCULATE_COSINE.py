@@ -42,10 +42,13 @@ def cosine_similarity(v1,v2):
     
     sumxx, sumxy, sumyy = 0, 0, 0
     for i in range(len(v1)):
-        x = v1[i]; y = v2[i]
+        x = v1[i]; 
+        y = v2[i]
         sumxx += x*x
         sumyy += y*y
         sumxy += x*y
+        #print(sumxy)
+        #print(sumxy/math.sqrt(sumxx*sumyy))
     return sumxy/math.sqrt(sumxx*sumyy)
 
 
@@ -57,11 +60,14 @@ USER_LIKE = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE
 BUSINESS_LIKE = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.BUSINESS_PROFILE]
 
 user_profile_cursor=USER_PROFILE.find()
+print(user_profile_cursor)
 business_profile_cursor=BUSINESS_PROFILE.find()
 
 for i in user_profile_cursor: 
 	xx = dict(tuple(ast.literal_eval(i["ENCRYPTED"])))
+	print(xx)
 	j=list(xx.keys())
+	#print(j)
 	for loop in j:
 		x[loop]=xx[loop]
 	break
@@ -72,7 +78,8 @@ for i in business_profile_cursor:
 	j=list(yy.keys())
 	for loop in j:
 		y[loop]=yy[loop]
-	print(cosine_similarity(x,y))
+	z=cosine_similarity(x,y)
+	#print(z)
 	
 	
 
