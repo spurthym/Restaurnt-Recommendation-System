@@ -26,7 +26,8 @@ with open(dataset_file) as dataset:
         text=data["text"]
         USER_PROFILE.insert_one({
             "USER_ID": data["user_id"],
-            "TEXT": data["text"]
+            "TEXT": data["text"],
+            "STARS":data["stars"]
         })
         if user_id not in reviewsByUser:
             reviewsByUser[user_id] = []
@@ -53,7 +54,8 @@ with open(dataset_file) as dataset:
         text = data["text"]
         BUSINESS_PROFILE.insert_one({
             "BUSINESS_ID": data["business_id"],
-            "TEXT": data["text"]
+            "TEXT": data["text"],
+            "STARS":data["stars"]
         })
         if business_id not in reviewsByBusiness:
             reviewsByBusiness[business_id] = []

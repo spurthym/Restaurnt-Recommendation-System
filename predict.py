@@ -35,6 +35,7 @@ class Predict():
             tokens = nltk.word_tokenize(sentence)
             # Word tokenizers is used to find the words
             # and punctuation in a string
+
             # removing stop words from wordList
 
             text = [word for word in tokens if word not in stopwords]
@@ -63,10 +64,12 @@ class Predict():
 
     def run(self, new_review):
         nouns = self.extract_lemmatized_nouns(new_review)
+        #above line cleas the text
         #print(nouns)
         #print(self.dictionary(nouns))
-        new_review_bow = self.dictionary.doc2bow(nouns)
-        print(new_review_bow[0])
+        new_review_bow = self.dictionary.doc2bow(nouns) 
+        #Convert document (a list of words) into the bag-of-words format = list of (token_id, token_count) 2-tuples
+        #print(new_review_bow[0])
         #print(new_review_bow)
         #bag-of-word (BoW) model. In this approach, each document is basically represented by a vector containing the frequency count of every word in the dictionary.
         #for i,val in new_review_bow:

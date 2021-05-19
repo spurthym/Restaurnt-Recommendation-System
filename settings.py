@@ -7,7 +7,7 @@ class Settings:
     # REVIEWS_DATABASE = "Dataset_Challenge_Reviews" # original, trained
 
     TAGS_DATABASE = "Tags"
-    REVIEWS_COLLECTION = "inv"
+    REVIEWS_COLLECTION = "b"
     CORPUS_COLLECTION = "Corpus"
     USER_DATABASE = "usr"
     USER_COLLECTION = "u"
