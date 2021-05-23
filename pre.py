@@ -22,15 +22,15 @@ for i in user_profile_cursor:
             "ENCRYPTED":str(mn(str(i["TEXT"])))
         })   
 
-print("User profiles with their respective encoded values created which has their prefrences hidden in it",USER_PROFILE.count_documents({}))
+print("User profiles with their respective encoded values created which has their prefrences hidden in it")#,USER_PROFILE.count_documents({}))
 
 
 
 for i in business_profile_cursor:
     BUSINESS_PROFILE.insert_one({
-            "USER_ID":i["BUSINESS_ID"],
+            "BUSINESS_ID":i["BUSINESS_ID"],
             "ENCRYPTED":str(mn(str(i["TEXT"])))
         })   
 
-print("business profiles with their respective encoded values created which has their features hidden in it",BUSINESS_PROFILE.count_documents({}))
+print("business profiles with their respective encoded values created which has their features hidden in it")#,BUSINESS_PROFILE.count_documents({}))
 

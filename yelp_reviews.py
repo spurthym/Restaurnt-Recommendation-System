@@ -38,7 +38,7 @@ with open(dataset_file) as dataset:
 
 
          # if loop to categorise the review
-print("user profiles created\n",len(reviewsByUser))
+#print("user profiles created\n",len(reviewsByUser))
 #Call len(*args)  to return its length, which is the number of unique values
 #this creates the number of unique users i.e(unique user_ids)
 reviewsByBusiness = {}
@@ -60,7 +60,7 @@ with open(dataset_file) as dataset:
         if business_id not in reviewsByBusiness:
             reviewsByBusiness[business_id] = []
         reviewsByBusiness[business_id].append(text) # if loop to categorise the review
-print("business profiles created \n",len(reviewsByBusiness)) 
+#print("business profiles created \n",len(reviewsByBusiness)) 
 #this creates the number of unique businesses i.e(unique business_ids)
 
 

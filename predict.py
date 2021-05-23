@@ -55,7 +55,9 @@ class Predict():
         for word in words:
             if word["pos"] in ["NN", "NNS"]:
                 nouns.append(lem.lemmatize(word["word"]))
-                c=c+1
+                #print(lem.lemmatize(word["word"]))
+
+                #c=c+1
 
         return nouns
 
@@ -64,6 +66,7 @@ class Predict():
 
     def run(self, new_review):
         nouns = self.extract_lemmatized_nouns(new_review)
+
         #above line cleas the text
         #print(nouns)
         #print(self.dictionary(nouns))
