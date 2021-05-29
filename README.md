@@ -1,25 +1,37 @@
-# Restaurnt-Recommendation-System
+# Simple CRUD-Web using MongoDB and Flask
 
--> Install MonDB and MonDB Compass, a GUI for MongoDB to visuallay explore your data.
-The dataset folder contains the reviews for all user in JSON format. 
-The dataset can be dowloaded from this link:https://drive.google.com/drive/folders/1VFz-WNROEVP4wqIW_zN7xweHfE-rX3T9?usp=sharing
+This is a simple example of Python Flask's usage as a simple "Task Manager".
+The Database Management System is MongoDB. 
+The python-MongoDB connector is PyMongo.
 
--> settings.py contains the path for the data set file besides the collection and database names used.
+### Installation
 
-run the following files in order
-step 1:
-yelp-reviews.py
+First, you should [install MongoDB](https://docs.mongodb.com/manual/installation/)
 
-step 2:
-delete-duplicates.py
+then install all dependencies by running the following command:
 
-step3:
-pre.py
-(predict.py is used for the model generation)
+```
+$ sudo pip install -r requirements.txt
+```
 
-step4:
-CALCULATE_COSINE.py 
+It will install Flask, Flask-WTF, and PyMongo.
 
+### Usage
 
+To run the program, first you should make sure MongoDB is running, start it using:
 
+```
+$ sudo service mongod start
+```
 
+then, run the program:
+
+```
+$ python run.py
+```
+
+Open your browser and go to `localhost:5000	` to see the running program.
+
+### External References:
+
+ * [Nice PyMongo Tutorial](http://codehandbook.org/pymongo-tutorial-crud-operation-mongodb/)

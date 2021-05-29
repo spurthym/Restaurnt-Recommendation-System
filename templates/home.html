@@ -1,50 +1,45 @@
-{% extends "base.html" %}
-
-{% block content %}
-  <div class="card-wrapper">
-
-    <div class="card">
-
-      <h1 class="center">Create an Account</h1>
-
-      <form name="signup_form">
-
-        <label for="name">Name</label>
-        <input type="text" name="name" class="field" required>
-
-        <label for="email">Email</label>
-        <input type="email" name="email" class="field" required>
-
-        <label for="password">Password</label>
-        <input type="password" name="password" class="field" required>
-
-        <p class="error error--hidden"></p>
-
-        <input type="submit" value="Sign Up" class="btn">
-      
-      </form>
-      
+<html>
+  <head>
+    <title>Simple Task Manager</title>
+    <style>
+        .newspaper {
+            -webkit-column-count: 3; /* Chrome, Safari, Opera */
+            -moz-column-count: 3; /* Firefox */
+            column-count: 2;
+        }
+        .head {
+            text-align: center;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="head">
+        <h1>SIMPLE TASK MANAGER</h1>
+        <h2>using MongoDB</h2>
     </div>
+    <div class="newspaper">
+        <form method="POST">
+            {{ cform.hidden_tag() }}
+            <fieldset>
+                <legend>Create Task</legend>
+                {{ cform.title.label }}<br>
 
-    <div class="card">
-
-      <h1 class="center">Log In</h1>
-
-      <form name="login_form">
-
-        <label for="email">Email</label>
-        <input type="email" name="email" class="field" required>
-
-        <label for="password">Password</label>
-        <input type="password" name="password" class="field" required>
-
-        <p class="error error--hidden"></p>
-
-        <input type="submit" value="Log In" class="btn">
-      
-      </form>
-      
-    </div>
-  
-  </div>
-{% endblock %}
+                {{ cform.title }}<br>
+                
+                {{ cform.create }}
+            </fieldset>
+        </form>
+    <br>
+    <br>
+    <br>
+    <br>
+    
+    <b>Tasks List:</b><br><br>
+    {% for i in data %}
+        ID = {{ i["id"] }} <br>
+        Title = {{ i["title"] }}<br>
+        Short Description = {{ i["shortdesc"] }} <br>
+        Priority = {{ i["priority"] }}<br><br>
+    {% endfor %}
+  </body>
+</html>

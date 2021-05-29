@@ -31,6 +31,11 @@ from pymongo import MongoClient
 
 from settings import Settings
 
+#from app.py import text123
+
+
+
+
 
 l=list(range(0,50))
 x={}
@@ -57,12 +62,20 @@ BUSINESS_PROFILE1 = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_
 
 USER_COMMENTS = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.USER_STOP]
 BUSINESS_COMMENTS = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.BUSINESS_STOP]
+unique_id = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.uniquid]
+
+
 
 user_profile_cursor=USER_PROFILE.find()
 
 business_profile_cursor=BUSINESS_PROFILE.find()
 bus_cur=BUSINESS_PROFILE1.find_one()
-test="u1"
+
+unique_id_cursor=unique_id.find()
+
+#test=text123
+	
+test="epA4L8lGsGO8IQrn8yFbfA"
 for i in user_profile_cursor: 
 	if (i["USER_ID"][0]==test):
 		break
