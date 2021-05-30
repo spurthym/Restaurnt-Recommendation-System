@@ -34,6 +34,13 @@ from settings import Settings
 #from app.py import text123
 
 
+#===================flask imports============
+
+
+
+
+#===========================================
+
 
 
 
@@ -74,68 +81,73 @@ bus_cur=BUSINESS_PROFILE1.find_one()
 unique_id_cursor=unique_id.find()
 
 #test=text123
-	
-test="epA4L8lGsGO8IQrn8yFbfA"
-for i in user_profile_cursor: 
-	if (i["USER_ID"][0]==test):
-		break
-
-xx = dict(tuple(ast.literal_eval(i["ENCRYPTED"])))
-j=list(xx.keys())
-for loop in j:
-	x[loop]=xx[loop]
+def calc_cos(user_id_ip):	
+	test=user_id_ip
 
 
-print("i:",i)# finds out the exact user being sent
+	for i in user_profile_cursor: 
+		if (i["USER_ID"][0]==test):
+			break
 
-
-MY_LIST=[]
-d={}
-for i in business_profile_cursor: 
-	yy = dict(tuple(ast.literal_eval(i["ENCRYPTED"])))
-	j=list(yy.keys())
+	xx = dict(tuple(ast.literal_eval(i["ENCRYPTED"])))
+	j=list(xx.keys())
 	for loop in j:
-		y[loop]=yy[loop]
-	s=sc.avg()
-	#print(i["USER_ID"])
-	MY_LIST.append(cosine_similarity(x,y))
-	d[i["BUSINESS_ID"]]=float(MY_LIST[-1])
-	#print("This is the rating which the person could rate ",MY_LIST[-1])
-	'''print("while Public rated this resturnt as ",s.run(bus_cur["BUSINESS_ID"]))'''
-for key, value in d.items():
-    print("restaurant:",key," recommendation:",(value*100),"%")
+		x[loop]=xx[loop]
+
+
+	print("i:",i)# finds out the exact user being sent
+
+
+	MY_LIST=[]
+	d={}
+	for i in business_profile_cursor: 
+		yy = dict(tuple(ast.literal_eval(i["ENCRYPTED"])))
+		j=list(yy.keys())
+		for loop in j:
+			y[loop]=yy[loop]
+		s=sc.avg()
+		#print(i["USER_ID"])
+		MY_LIST.append(cosine_similarity(x,y))
+		d[i["BUSINESS_ID"]]=float(MY_LIST[-1])
+		#print("This is the rating which the person could rate ",MY_LIST[-1])
+		'''print("while Public rated this resturnt as ",s.run(bus_cur["BUSINESS_ID"]))'''
+	for key, value in d.items():
+	    print("restaurant:",key," recommendation:",(value*100),"%")
 
 
 
-Keymax = max(d, key=d.get)
-Keymin = min(d, key=d.get)
+	Keymax = max(d, key=d.get)
+	Keymin = min(d, key=d.get)
 
-print("\n\nThe best recommended restaurant is:",Keymax,d[Keymax])
-print("\n\nThe least recommended restaurant is:",Keymin,d[Keymin])
-
+	
 
 
 
-USER_COMMENTS_CURSOR=USER_COMMENTS.find()
-print("\n\nUSER COMMENTS IS AS FOLLWS\n\n")
-for i in USER_COMMENTS_CURSOR:
-	if (i["USER_ID"][0]==test):
-		for j in (i["TEXT"]):
-			print("\n",j)
 
-print("\n\nCOMMENTS ON RESTAURANT IS AS FOLLOWS\n\n")
+	USER_COMMENTS_CURSOR=USER_COMMENTS.find()
+	print("\n\nUSER COMMENTS IS AS FOLLWS\n\n")
+	for i in USER_COMMENTS_CURSOR:
+		if (i["USER_ID"][0]==test):
+			for j in (i["TEXT"]):
+				print("\n",j)
+
+	print("\n\nCOMMENTS ON RESTAURANT IS AS FOLLOWS\n\n")
 
 
-BUSINESS_COMMENTS_CURSOR=BUSINESS_COMMENTS.find()
-for i in BUSINESS_COMMENTS_CURSOR:
-	if(i["BUSINESS_ID"]==Keymax):
-		for j in (i["TEXT"]):
-			print("\n",j)
+	BUSINESS_COMMENTS_CURSOR=BUSINESS_COMMENTS.find()
+	for i in BUSINESS_COMMENTS_CURSOR:
+		if(i["BUSINESS_ID"]==Keymax):
+			for j in (i["TEXT"]):
+				print("\n",j)
+	print("\n\nThe best recommended restaurant is:",Keymax,d[Keymax])
+	
+
+	return ("The least recommended restaurant is:")#Keymin,d[Keymin])
 	'''
-print(BUSINESS_COMMENTS.find_one())
+	print(BUSINESS_COMMENTS.find_one())
 
-for i in BUSINESS_COMMENTS_CURSOR:
+	for i in BUSINESS_COMMENTS_CURSOR:
 
-	if ((i["BUSINESS_ID"][1])==Keymax):
-		for j in (i["TEXT"]):
-			print(j,)'''
+		if ((i["BUSINESS_ID"][1])==Keymax):
+			for j in (i["TEXT"]):
+				print(j,)'''

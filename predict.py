@@ -59,6 +59,7 @@ class Predict():
 
                 #c=c+1
 
+        #print(nouns)
         return nouns
 
         
@@ -66,6 +67,7 @@ class Predict():
 
     def run(self, new_review):
         nouns = self.extract_lemmatized_nouns(new_review)
+
 
         #above line cleas the text
         #print(nouns)

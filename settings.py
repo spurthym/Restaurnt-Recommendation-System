@@ -18,3 +18,4 @@ class Settings:
     BUSINESS_PROFILE="ub"
     uniquid="uniquid"
     check_user="cu"
+    rmdr="test"
