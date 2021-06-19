@@ -6,9 +6,6 @@ import gensim
 import pickle
 import time
 import nltk
-from gensim import corpora
-from gensim.corpora import BleiCorpus
-from gensim.models import LdaModel
 from pymongo import MongoClient
 from settings import Settings
 #import pyLDAvis.gensim
@@ -73,19 +70,22 @@ unique_id = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE
 
 
 
-user_profile_cursor=USER_PROFILE.find()
 
-business_profile_cursor=BUSINESS_PROFILE.find()
-bus_cur=BUSINESS_PROFILE1.find_one()
 
-unique_id_cursor=unique_id.find()
 
-#test=text123
+
 def calc_cos(user_id_ip):	
 	test=user_id_ip
+	d={}
+	user_profile_cursor=USER_PROFILE.find()
+
+	business_profile_cursor=BUSINESS_PROFILE.find()
+	bus_cur=BUSINESS_PROFILE1.find_one()
+
+	unique_id_cursor=unique_id.find()
 
 
-	for i in user_profile_cursor: 
+	for i in user_profile_cursor:
 		if (i["USER_ID"][0]==test):
 			break
 
@@ -94,12 +94,12 @@ def calc_cos(user_id_ip):
 	for loop in j:
 		x[loop]=xx[loop]
 
-
-	print("i:",i)# finds out the exact user being sent
+	return_string0=""
+	return_string0=i["USER_ID"] #finds out the exact user being sent
 
 
 	MY_LIST=[]
-	d={}
+	
 	for i in business_profile_cursor: 
 		yy = dict(tuple(ast.literal_eval(i["ENCRYPTED"])))
 		j=list(yy.keys())
@@ -119,9 +119,19 @@ def calc_cos(user_id_ip):
 	Keymax = max(d, key=d.get)
 	Keymin = min(d, key=d.get)
 
+	return_string1=""
+	return_string2=""
+
+	return_string1=str(Keymax)
+	return_string1_1=str((d[Keymax])*100)+"%"
+	return_string2=str(Keymin)
+	return_string2_2=str((d[Keymin])*100)+"%"
+
 	
 
-
+	list1=[]
+	list2=[]
+	list3=[]
 
 
 	USER_COMMENTS_CURSOR=USER_COMMENTS.find()
@@ -129,20 +139,40 @@ def calc_cos(user_id_ip):
 	for i in USER_COMMENTS_CURSOR:
 		if (i["USER_ID"][0]==test):
 			for j in (i["TEXT"]):
-				print("\n",j)
+				list1.append(j)
 
-	print("\n\nCOMMENTS ON RESTAURANT IS AS FOLLOWS\n\n")
+	print("\n\nCOMMENTS ON BEST RECOMMENDED RESTAURANT IS AS FOLLOWS\n\n")
 
+	
 
 	BUSINESS_COMMENTS_CURSOR=BUSINESS_COMMENTS.find()
 	for i in BUSINESS_COMMENTS_CURSOR:
 		if(i["BUSINESS_ID"]==Keymax):
 			for j in (i["TEXT"]):
-				print("\n",j)
-	print("\n\nThe best recommended restaurant is:",Keymax,d[Keymax])
+				list2.append(j)
 	
 
-	return ("The least recommended restaurant is:")#Keymin,d[Keymin])
+	print("\n\nCOMMENTS ON LEAST RECOMMENDED RESTAURANT IS AS FOLLOWS\n\n")
+
+
+	BUSINESS_COMMENTS_CURSOR=BUSINESS_COMMENTS.find()
+	for i in BUSINESS_COMMENTS_CURSOR:
+		if(i["BUSINESS_ID"]==Keymin):
+			for j in (i["TEXT"]):
+				list3.append(j)
+
+	return_string ={
+	'return_string0' : return_string0,
+	'return_string1' : return_string1,
+	'return_string1_1':return_string1_1,
+	'return_string2' : return_string2,
+	'return_string2_2':return_string2_2,
+	'list1' : list1,
+	'list2' : list2,
+	'list3' :list3
+	}
+	return return_string
+	#return ("The least recommended restaurant is: {} {}".format(Keymin,d[Keymin]))
 	'''
 	print(BUSINESS_COMMENTS.find_one())
 

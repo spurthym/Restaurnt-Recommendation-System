@@ -1,33 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Restaurant Recommendation</title>
-
-
-<style type="text/css">
-
-.titl{
+    <style type="text/css">
+        .titl{
 border-left: 3px solid red;
 padding-left: 40px;
 }
 body {
-  padding-top: 200px;
+  padding-top: 20px;
   padding-bottom:90px;
-  padding-left: 450px;
+  padding-left: 20px;
   background-color: #eee;
 }
 
 
 .card {
   margin: 0 30px 60px;
-  padding: 20px 40px;
-  width: 460px;
+  width: 400px;
   box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
   border-radius: 5px;
   background: var(--white);
+
+}
+
+.card1 {
+  margin: 0px 30px 60px;
+  width: 80%;
+  box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
+  border-radius: 5px;
+  background: var(--white);
+  text-align: center;
+}
+.card2 {
+  margin: 0 30px 60px;
+
+  width: 72%;
+  box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
+  border-radius: 5px;
+  background: var(--white);
+  text-align: center;
 }
 
 :root {
@@ -77,6 +88,20 @@ h2 {
   font-size: 20px;
   line-height: 1.2;
   color: var(--grey-dark);
+}
+h3{
+    margin: 0.5em 0 1em;
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--grey-dark);
+
+}
+h4{
+    margin: 0.5em 0 1em;
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--grey-dark);
+
 }
 
 p {
@@ -552,34 +577,55 @@ template {
 [hidden] {
   display: none;
 }
-
-
-
-</style>
-
-
+    </style>
 </head>
-
-
-
-<h1 class="titl">Restaurant Recommendation System</h1>
-
-
 <body>
-    <div class="card">
-    <form action="." method="POST">
-    	<label for="name" class="center" >Enter the User ID</label>
-    	<br>
-        <input id="name" type="text" name="text1" class="field">
-        <input type="submit" name="my-form" value="Check !" class="btn">
-    </form>
+    <div class="card-wrapper">
+    <div class="card1">
+	<h2>The user ID is </h2>
+        <h3>{{return_string0}}</h3>
 </div>
+    <div class="card">
+    <h2>Best Recommended Restaurant is :</h2>
+        <h4>{{return_string1}}</h4>
+        <h4>{{return_string1_1}}</h4>
+
+    </div>
+    <div class="card">
+
+    <h2>Least Recommended Restaurant is:<br></h2>
+        <h4>{{return_string2}}</h4>
+        <h4>{{return_string2_2}}</h4>
+    </div>
+
+    <div class="card2">
+
+    <h2>User Comments on various restaurants is as follows	</h2>
+
+    {% for x in list1 %}
+    	<h4>{{x}}</h4>
+    {% endfor %}
+    <br>
+    </div>
+
+        <div class="card">
+
+     <h2>Comments on the Best Recommended Restaurant</h2>
+    {% for x in list2 %}
+    	<h4>{{x}}</h4>
+    {% endfor %}
+</div>
+        <div class="card">
+
+     <h2>Comments on the Least Recommended Restaurant</h2>
 
 
+    {% for x in list3 %}
+    	<h4>{{x}}</h4>
+    {% endfor %}
 
-    
-
-   
+   </div>
+</div>
     
 </body>
 </html>

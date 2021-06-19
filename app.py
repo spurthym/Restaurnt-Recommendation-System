@@ -8,10 +8,13 @@ app = Flask(__name__)
 app.config['DEBUG']=True
 
 
-text123=""
+
 @app.route('/')
 def my_form():
-    return render_template("my-form.html") # this should be the name of your html file
+
+    x= render_template("my-form.html") # this should be the name of your html file
+    print("get :\n",x)
+    return x
 
 @app.route('/', methods=['POST'])
 def my_form_post():
@@ -23,8 +26,9 @@ def my_form_post():
     else :
         return "<h1>No Plagiarism Detected !</h1>"
     '''
-    
-    return(calc_cos(str(text1)))
+    print("calc_cos:\n",text1)
+    data = calc_cos(str(text1))
+    return render_template('display.html',**data)
 
 
 
