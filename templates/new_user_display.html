@@ -1,42 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Restaurant Recommendation</title>
-
-
-<style type="text/css">
-
-.titl{
+    <style type="text/css">
+        .titl{
 border-left: 3px solid red;
-padding-left: 4px;
+padding-left: 40px;
 }
 body {
   padding-top: 20px;
   padding-bottom:90px;
-  padding-left: 40px;
+  padding-left: 20px;
   background-color: #eee;
 }
 
 
 .card {
-  margin: 0 0px 0px;
-  padding: 20px 40px;
-  width: 300px;
-  box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
-  border-radius: 5px;
-  background: var(--white);
-}
-.card1 {
-
-  margin: 200px 20px 350px 200px;
-  padding: 20px 40px;
+  margin: 0 30px 60px;
   width: 400px;
   box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
   border-radius: 5px;
   background: var(--white);
+
+}
+
+.card1 {
+  margin: 0px 30px 60px;
+  width: 80%;
+  box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
+  border-radius: 5px;
+  background: var(--white);
+  text-align: center;
+}
+.card2 {
+  margin: 0 30px 60px;
+
+  width: 72%;
+  box-shadow: 0 8px 26px -4px rgba(0,0,0,0.15);
+  border-radius: 5px;
+  background: var(--white);
+  text-align: center;
 }
 
 :root {
@@ -86,6 +88,20 @@ h2 {
   font-size: 20px;
   line-height: 1.2;
   color: var(--grey-dark);
+}
+h3{
+    margin: 0.5em 0 1em;
+  font-size: 18px;
+  line-height: 1.2;
+  color: var(--grey-dark);
+
+}
+h4{
+    margin: 0.5em 0 1em;
+  font-size: 15px;
+  line-height: 1.2;
+  color: var(--grey-dark);
+
 }
 
 p {
@@ -561,59 +577,36 @@ template {
 [hidden] {
   display: none;
 }
-
-
-
-</style>
-
-
+    </style>
 </head>
-
-
-
-<h1 class="titl">Restaurant Recommendation System</h1>
-
-
 <body>
     <div class="card-wrapper">
-
-    <div class="card">
-    <form action="." method="POST">
-      <h1 class="center">New User?</h1>
-    	
-
-      <label for="text1"  >Enter your name</label>
-      
-        <input  id="text1" type="text" name="text1" class="field">
-
-        <label for="text2"  >Enter your age</label>
-     
-        <input id="text2" type="text" name="text2" class="field">
-
-        <label for="text3"  >Enter your Gender</label>
-      
-        <input type="text" name="text3" class="field">
-        
-
-       <label for="text4"  >Enter your fav cusine</label>
-      
-        <input type="text" name="text4" class="field">
-
-       <label for="text5"  >Enter your price range $</label>
-      
-        <input type="text" name="text5" class="field">
-
-
-        <input type="submit" name="my-form" value="Check !" class="btn">
-    </form>
+    <div class="card1">
+	<h2>The user ID is </h2>
+        <h3></h3>
 </div>
-
-
-
+    
 
     
 
-   
-    </div>
+        <div class="card">
+
+     <h2>Comments on the Best Recommended Restaurant</h2>
+    {% for x in list1 %}
+    	<h4>{{x}}</h4>
+    {% endfor %}
+</div>
+        <div class="card">
+
+     <h2>Comments on the Least Recommended Restaurant</h2>
+
+
+    {% for x in list2 %}
+    	<h4>{{x}}</h4>
+    {% endfor %}
+
+   </div>
+</div>
+    
 </body>
 </html>

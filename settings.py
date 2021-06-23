@@ -19,3 +19,4 @@ class Settings:
     uniquid="uniquid"
     check_user="cu"
     rmdr="test"
+    NEW_USER="nu"
