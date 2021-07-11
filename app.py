@@ -45,18 +45,18 @@ def new_user_data():
 
     if(text2!=""):
         NEW_COLLECTION.insert_one({
-            "NAME":str(text1),
+            "EMAIL":str(text1),
             "AGE":str(text2),
             "GENDER":str(text3),
             "CUSINE":str(text4),
-            "PRICE":str(text5)
+            "ATTRIBUTES":str(text5)
 
             })
         USER_PROFILE.insert_one({
                 "USER_ID": str(text1),
                 "ENCRYPTED":str(mn(cal_cos_on))})
 
-    data = new_user_query(str(text4))
+    data = new_user_query(str(text4),text1)
     return render_template('new_user_display.html',**data)
 
 @app.route('/existing_user/')

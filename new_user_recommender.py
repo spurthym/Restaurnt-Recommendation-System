@@ -7,43 +7,32 @@ import re
 BUSINESS_PROFILE = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.BUSINESS_COLLECTION] #collection name is b
 business_profile_cursor = BUSINESS_PROFILE.find()
 
-def new_user_query(cusine):
+def new_user_query(cusine,text1):
 	print("the cusine is:" , cusine)
 
 	cusine_lower=cusine.lower()
-	list1=[]
-	list2=[]
-	return_string1=""
-	return_string2=""
-	
+
+	dict1={}
+	dict2={}
 
 	for i in business_profile_cursor:
-		print(i["TEXT"].lower().find(cusine_lower))
 		
 		if((i["TEXT"].lower().find(cusine_lower)) != -1):
 			
 			if(i["STARS"]>=3):
-				print([i["STARS"]])
-				list1.append(i["TEXT"])
-				return_string1+=i["BUSINESS_ID"]
+				dict1.update({i["BUSINESS_ID"]:i["TEXT"]})
 
 			elif(i["STARS"]<2):
-				list2.append(i["TEXT"])
-				return_string2+=i["BUSINESS_ID"]
-	print("_____________________________________________________________")
-	print("hello",return_string1)
-	print(return_string2)
-	print(list1)
-	print(list2)
-	print("_____________________________________________________________")
+				dict2.update({i["BUSINESS_ID"]:i["TEXT"]})
 
+				
+	emailid=text1
 
 
 	return_string={
-	"return_string1":return_string1,
-	"return_string2":return_string2,
-	"list1":list1,
-	"list2":list2
+	"dict1": dict1,
+	"dict2": dict2,
+	"emailid":emailid
 	}
 
 	return return_string

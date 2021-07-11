@@ -4,14 +4,39 @@
     <style type="text/css">
         .titl{
 border-left: 3px solid red;
-padding-left: 40px;
+padding-left: 4px;
+margin-left: 10px;
 }
 body {
   padding-top: 20px;
   padding-bottom:90px;
-  padding-left: 20px;
+  padding-left: 0px;
   background-color: #eee;
 }
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #308ce4;
+  color: white;
+}
+
 
 
 .card {
@@ -580,6 +605,11 @@ template {
     </style>
 </head>
 <body>
+   <div class="topnav">
+  <a class="active" href=/>Home</a>
+  <a href="/new_user">New User</a>
+  <a href="/existing_user">Existing User</a>
+</div>
     <div class="card-wrapper">
     <div class="card1">
 	<h2>The user ID is </h2>

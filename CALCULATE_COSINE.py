@@ -121,11 +121,13 @@ def calc_cos(user_id_ip):
 
 	return_string1=""
 	return_string2=""
-
+	val1=round((d[Keymax])*100,2)
 	return_string1=str(Keymax)
-	return_string1_1=str((d[Keymax])*100)+"%"
+	return_string1_1=str(val1)+"%"
+	val2=round((d[Keymin])*100,2)
+
 	return_string2=str(Keymin)
-	return_string2_2=str((d[Keymin])*100)+"%"
+	return_string2_2=str(val2)+"%"
 
 	
 

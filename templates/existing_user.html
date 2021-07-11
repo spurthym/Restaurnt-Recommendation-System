@@ -12,13 +12,38 @@
 .titl{
 border-left: 3px solid red;
 padding-left: 4px;
+margin-left: 10px;
 }
 body {
   padding-top: 20px;
   padding-bottom:90px;
-  padding-left: 40px;
+  padding-left: 0px;
   background-color: #eee;
 }
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #308ce4;
+  color: white;
+}
+
 
 
 .card {
@@ -571,10 +596,16 @@ template {
 
 
 
-<h1 class="titl">Restaurant Recommendation System</h1>
+
 
 
 <body>
+   <div class="topnav">
+  <a class="active" href=/>Home</a>
+  <a href="/new_user">New User</a>
+  <a href="/existing_user">Existing User</a>
+</div>
+<h1 class="titl">Restaurant Recommendation System</h1>
     <div class="card-wrapper">
 
     
