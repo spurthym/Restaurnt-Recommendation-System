@@ -35,6 +35,7 @@ for i,val in reviewsByUser.items():
 	})
 
 
+
 reviewsByBusiness = {}
 with open(dataset_file) as dataset:
     next(dataset)

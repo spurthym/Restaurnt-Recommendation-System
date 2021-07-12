@@ -4,10 +4,11 @@ from pymongo import MongoClient
 from settings import Settings
 import re
 
-BUSINESS_PROFILE = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.BUSINESS_COLLECTION] #collection name is b
-business_profile_cursor = BUSINESS_PROFILE.find()
 
 def new_user_query(cusine,text1):
+	BUSINESS_PROFILE = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.BUSINESS_COLLECTION] #collection name is b
+	business_profile_cursor = BUSINESS_PROFILE.find()
+
 	print("the cusine is:" , cusine)
 
 	cusine_lower=cusine.lower()

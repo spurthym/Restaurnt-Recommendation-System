@@ -18,8 +18,6 @@ class Predict():
         with open('stopwords.txt', 'rU') as f:
             for line in f:
                 stopwords[line.strip()] = 1
-
-
         return stopwords
 
     def extract_lemmatized_nouns(self, new_review):
@@ -49,7 +47,8 @@ class Predict():
             #print(words)
 
         lem = WordNetLemmatizer()
-        #We use NLTK’s Wordnet to find the meanings of words, synonyms, antonyms, and more. In addition, we use WordNetLemmatizer to get the root word.
+        #We use NLTK’s Wordnet to find the meanings of words, synonyms, antonyms, and more. 
+        #In addition, we use WordNetLemmatizer to get the root word.
         nouns = []
         c=0
         for word in words:
@@ -76,7 +75,8 @@ class Predict():
         #Convert document (a list of words) into the bag-of-words format = list of (token_id, token_count) 2-tuples
         #print(new_review_bow[0])
         #print(new_review_bow)
-        #bag-of-word (BoW) model. In this approach, each document is basically represented by a vector containing the frequency count of every word in the dictionary.
+        #bag-of-word (BoW) model. In this approach, each document is basically represented by a vector 
+        # containing the frequency count of every word in the dictionary.
         #for i,val in new_review_bow:
          #   print(i,val)
         #print("new_review_bow = ", new_review_bow)

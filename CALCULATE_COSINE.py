@@ -41,12 +41,7 @@ from settings import Settings
 
 
 
-l=list(range(0,50))
-x={}
-y={}
-for i in l:
-	x[i]=0
-	y[i]=0
+
 
 def cosine_similarity(v1,v2):
     #"compute cosine similarity of v1 to v2: (v1 dot v2)/{||v1||*||v2||)"
@@ -60,43 +55,45 @@ def cosine_similarity(v1,v2):
 
 
 
-USER_PROFILE = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.USER_PROFILE]
-BUSINESS_PROFILE = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.BUSINESS_PROFILE]
-BUSINESS_PROFILE1 = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.BUSINESS_COLLECTION]
+USER_PROFILE = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.USER_PROFILE]#ub
+BUSINESS_PROFILE = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.BUSINESS_PROFILE]#up
+BUSINESS_PROFILE1 = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.BUSINESS_COLLECTION]#b
 
-USER_COMMENTS = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.USER_STOP]
-BUSINESS_COMMENTS = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.BUSINESS_STOP]
-unique_id = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.uniquid]
+USER_COMMENTS = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.USER_STOP]#su
+BUSINESS_COMMENTS = MongoClient(Settings.MONGO_CONNECTION_STRING)[Settings.USER_DATABASE][Settings.BUSINESS_STOP]#sb
+	
 
+def calc_cos(user_id_ip):
 
+	l=list(range(0,50))
+	x={}
+	y={}
+	for i in l:
+		x[i]=0
+		y[i]=0
 
-
-
-
-
-def calc_cos(user_id_ip):	
 	test=user_id_ip
 	d={}
 	user_profile_cursor=USER_PROFILE.find()
 
 	business_profile_cursor=BUSINESS_PROFILE.find()
-	bus_cur=BUSINESS_PROFILE1.find_one()
 
-	unique_id_cursor=unique_id.find()
 
 
 	for i in user_profile_cursor:
 		if (i["USER_ID"][0]==test):
 			break
 
+	print("test",test)
+	print("USER_ID",i["USER_ID"])
 	xx = dict(tuple(ast.literal_eval(i["ENCRYPTED"])))
 	j=list(xx.keys())
 	for loop in j:
 		x[loop]=xx[loop]
 
-	return_string0=""
+	print("x" , x)
 	return_string0=i["USER_ID"] #finds out the exact user being sent
-
+	print("return_string0",return_string0)
 
 	MY_LIST=[]
 	
@@ -105,14 +102,15 @@ def calc_cos(user_id_ip):
 		j=list(yy.keys())
 		for loop in j:
 			y[loop]=yy[loop]
-		s=sc.avg()
+		
 		#print(i["USER_ID"])
 		MY_LIST.append(cosine_similarity(x,y))
 		d[i["BUSINESS_ID"]]=float(MY_LIST[-1])
 		#print("This is the rating which the person could rate ",MY_LIST[-1])
 		'''print("while Public rated this resturnt as ",s.run(bus_cur["BUSINESS_ID"]))'''
+	
 	for key, value in d.items():
-	    print("restaurant:",key," recommendation:",(value*100),"%")
+	    print("restaurant:",key," recommendation:",(round((value*100),2)),"%")
 
 
 
@@ -121,13 +119,12 @@ def calc_cos(user_id_ip):
 
 	return_string1=""
 	return_string2=""
-	val1=round((d[Keymax])*100,2)
+	
 	return_string1=str(Keymax)
-	return_string1_1=str(val1)+"%"
-	val2=round((d[Keymin])*100,2)
+	return_string1_1=str(round((d[Keymax])*100,2))+"%"
 
 	return_string2=str(Keymin)
-	return_string2_2=str(val2)+"%"
+	return_string2_2=str(round((d[Keymin])*100,2))+"%"
 
 	
 

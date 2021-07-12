@@ -22,13 +22,11 @@ app.config['DEBUG']=True
 def my_form():
 
     x= render_template("home_page.html") # this should be the name of your html file
-    print("get :\n",x)
     return x
 
 @app.route('/new_user/')
 def new_user():
     x= render_template("new_user.html") # this should be the name of your html file
-    print("get :\n",x)
     return x
 
 @app.route('/new_user/', methods=['POST'])
@@ -52,6 +50,7 @@ def new_user_data():
             "ATTRIBUTES":str(text5)
 
             })
+        
         USER_PROFILE.insert_one({
                 "USER_ID": str(text1),
                 "ENCRYPTED":str(mn(cal_cos_on))})
@@ -63,7 +62,6 @@ def new_user_data():
 def existing_user():
 
     x= render_template("existing_user.html") # this should be the name of your html file
-    print("get :\n",x)
     return x
 
 @app.route('/existing_user/', methods=['POST'])
