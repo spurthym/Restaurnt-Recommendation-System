@@ -12,6 +12,7 @@ To install pymongo, run the following command in your terminal or command prompt
 
 Copy code
 pip install pymongo
+
 Homebrew:
 
 Homebrew is a package manager for macOS that facilitates the installation of various software packages. To install Homebrew, follow the instructions provided on the official website: https://brew.sh/#install
